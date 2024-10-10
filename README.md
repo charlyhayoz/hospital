@@ -31,3 +31,5 @@ A little project for an hospital
 Backend : NodeJS
 
 Front-End : Angular 18 & Ionic 7 for the styling
+
+Hope you enjoy it (;
