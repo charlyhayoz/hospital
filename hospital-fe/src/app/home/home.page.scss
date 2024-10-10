@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  padding:10px;
+
+  ion-list {
+    min-width: 400px;
+    border-radius: 30px;
+    margin-top:10px;
+    margin-bottom:10px;
+    border:1px solid var(--ion-color-primary);
+  }
+
+  h2 {
+    border-bottom:1px solid white;
+  }
+
+
+  .item-history {
+    ion-label {
+      flex:0;
+    }
+    span {
+      text-align: center;
+    }
+    span:not(:last-child) {
+      margin-right:5px;
+    }
+  }
+}
