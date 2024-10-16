@@ -16,7 +16,9 @@
   }
 
   h2 {
-    border-bottom:1px solid white;
+    ion-icon {
+      margin-bottom:-4px;
+    }
   }
 
 
@@ -27,8 +29,6 @@
     span {
       text-align: center;
     }
-    span:not(:last-child) {
-      margin-right:5px;
-    }
+   
   }
 }

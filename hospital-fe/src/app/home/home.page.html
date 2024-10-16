@@ -32,6 +32,10 @@
         </ion-item>
       </ion-list>
       <p *ngIf="drugs.length == 0">No drugs</p>
+
+      <ion-button (click)="administer_drugs()" shape="round">
+        Administer <ion-icon slot="end" name="bandage-outline"></ion-icon>
+      </ion-button>
     </ng-container>
     <ng-container *ngIf="drugs && patients">
       <h2>
@@ -41,19 +45,20 @@
         ></ion-icon>
         Treatment
       </h2>
-      <ion-button (click)="administer_drugs()" shape="round">
-        Administer <ion-icon slot="end" name="arrow-down-outline"></ion-icon>
-      </ion-button>
+
       <ion-list *ngIf="history.length > 0">
         <ng-container
-          *ngFor="let history_item of history; let i = index; let last = last;"
+          *ngFor="let history_item of history; let i = index;  let last=last;"
         >
           <ng-container *ngIf="i < MAX_HISTORY">
             <ion-item lines="none" class="item-history">
               <ion-icon class="ion-margin-end" name="apps-outline"></ion-icon>
 
-              <span *ngFor="let item of history_item.input  | keyvalue">
-                {{returnPatientState(item.key)}}: {{item.value}}</span
+              <span
+                *ngFor="let item of history_item.input  | keyvalue; let first = first;"
+              >
+                {{!first?', ':''}}{{returnPatientState(item.key)}}:
+                {{item.value}}</span
               >
             </ion-item>
             <ion-item lines="none" class="item-history">
@@ -62,8 +67,8 @@
                 name="bandage-outline"
               ></ion-icon>
 
-              <span *ngFor="let drug of history_item.drugs">
-                {{returnDrugName(drug)}}</span
+              <span *ngFor="let drug of history_item.drugs; let first = first;">
+                {{!first?', ':''}}{{returnDrugName(drug)}}</span
               >
               <span *ngIf="drugs.length == 0">No drugs</span>
             </ion-item>
@@ -74,8 +79,11 @@
                 name="swap-horizontal-outline"
               ></ion-icon>
 
-              <span *ngFor="let item of history_item.output  | keyvalue">
-                {{returnPatientState(item.key)}}: {{item.value}}</span
+              <span
+                *ngFor="let item of history_item.output  | keyvalue; let first = first;"
+              >
+                {{!first?', ':''}}{{returnPatientState(item.key)}}:
+                {{item.value}}</span
               >
             </ion-item>
           </ng-container>
