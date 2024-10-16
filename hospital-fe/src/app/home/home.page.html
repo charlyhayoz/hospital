@@ -1,9 +1,3 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title class="ion-text-center"> Hospital FE </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <div class="container">
     <ion-button (click)="fetchData()" shape="round">
@@ -11,7 +5,10 @@
     </ion-button>
 
     <ng-container *ngIf="patients">
-      <h2>Patients</h2>
+      <h2>
+        <ion-icon class="ion-margin-end" name="apps-outline"></ion-icon>
+        Patients
+      </h2>
       <ion-list *ngIf="(patients | keyvalue ).length > 0">
         <ion-item lines="none" *ngFor="let item of patients  | keyvalue">
           <ion-label class="ion-text-center"
@@ -23,7 +20,10 @@
     </ng-container>
 
     <ng-container *ngIf="drugs">
-      <h2>Drugs</h2>
+      <h2>
+        <ion-icon class="ion-margin-end" name="bandage-outline"></ion-icon>
+        Drugs
+      </h2>
       <ion-list *ngIf="drugs.length > 0">
         <ion-item lines="none" *ngFor="let drug of drugs">
           <ion-label class="ion-text-center"
@@ -33,9 +33,14 @@
       </ion-list>
       <p *ngIf="drugs.length == 0">No drugs</p>
     </ng-container>
-
     <ng-container *ngIf="drugs && patients">
-      <h2>Treatment</h2>
+      <h2>
+        <ion-icon
+          class="ion-margin-end"
+          name="swap-horizontal-outline"
+        ></ion-icon>
+        Treatment
+      </h2>
       <ion-button (click)="administer_drugs()" shape="round">
         Administer <ion-icon slot="end" name="arrow-down-outline"></ion-icon>
       </ion-button>
@@ -45,14 +50,17 @@
         >
           <ng-container *ngIf="i < MAX_HISTORY">
             <ion-item lines="none" class="item-history">
-              <span>Input: </span>
+              <ion-icon class="ion-margin-end" name="apps-outline"></ion-icon>
 
               <span *ngFor="let item of history_item.input  | keyvalue">
                 {{returnPatientState(item.key)}}: {{item.value}}</span
               >
             </ion-item>
             <ion-item lines="none" class="item-history">
-              <span>Drugs: </span>
+              <ion-icon
+                class="ion-margin-end"
+                name="bandage-outline"
+              ></ion-icon>
 
               <span *ngFor="let drug of history_item.drugs">
                 {{returnDrugName(drug)}}</span
@@ -61,7 +69,10 @@
             </ion-item>
 
             <ion-item [lines]="last?'none':'full'" class="item-history">
-              <span>Output: </span>
+              <ion-icon
+                class="ion-margin-end"
+                name="swap-horizontal-outline"
+              ></ion-icon>
 
               <span *ngFor="let item of history_item.output  | keyvalue">
                 {{returnPatientState(item.key)}}: {{item.value}}</span
